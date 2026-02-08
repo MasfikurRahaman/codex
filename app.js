@@ -12,6 +12,36 @@ const renderPanel = ({ title, summary, items }) => {
   `;
 };
 
+const renderQuestions = ({ topic, questions }) => {
+  actionPanel.innerHTML = `
+    <div class="action-panel__content">
+      <h3>${topic} • 100 Interview Questions</h3>
+      <p>Select a question to reveal the answer.</p>
+      <div class="question-list">
+        ${questions
+          .map(
+            (item) =>
+              `<button class="question-item" data-topic="${topic}" data-question-id="${item.id}">${item.question}</button>`
+          )
+          .join("")}
+      </div>
+      <div class="answer-box" id="answer-box">Choose a question to see the answer.</div>
+    </div>
+  `;
+};
+
+const renderAnswer = ({ topic, id, question, answer }) => {
+  const answerBox = document.getElementById("answer-box");
+  if (!answerBox) {
+    return;
+  }
+  answerBox.innerHTML = `
+    <strong>${topic} • Question ${id}</strong><br />
+    ${question}<br /><br />
+    ${answer}
+  `;
+};
+
 const renderError = (message) => {
   actionPanel.innerHTML = `
     <div class="action-panel__content">
@@ -30,6 +60,19 @@ const fetchData = async (url) => {
 };
 
 const handleAction = async (event) => {
+  const questionButton = event.target.closest(".question-item");
+  if (questionButton) {
+    const topic = questionButton.dataset.topic;
+    const id = questionButton.dataset.questionId;
+    try {
+      const data = await fetchData(`/api/topics/${encodeURIComponent(topic)}/questions/${id}`);
+      renderAnswer(data);
+    } catch (error) {
+      renderError(error.message);
+    }
+    return;
+  }
+
   const button = event.target.closest(".action-btn");
   if (!button) {
     return;
@@ -43,14 +86,22 @@ const handleAction = async (event) => {
     endpoint = "/api/focus";
   }
 
-  if (action === "materials" || action === "interview") {
-    const query = new URLSearchParams({ topic, type: action });
-    endpoint = `/api/topic?${query.toString()}`;
+  if (action === "materials") {
+    const query = new URLSearchParams({ topic });
+    endpoint = `/api/materials?${query.toString()}`;
+  }
+
+  if (action === "questions") {
+    endpoint = `/api/topics/${encodeURIComponent(topic)}/questions`;
   }
 
   try {
     const data = await fetchData(endpoint);
-    renderPanel(data);
+    if (action === "questions") {
+      renderQuestions(data);
+    } else {
+      renderPanel(data);
+    }
     actionPanel.scrollIntoView({ behavior: "smooth", block: "center" });
   } catch (error) {
     renderError(error.message);
