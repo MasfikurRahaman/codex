@@ -29,16 +29,25 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+.primary,
+.secondary,
+.accent {
   border: none;
   cursor: pointer;
   font-weight: 600;
   padding: 0.85rem 1.6rem;
   border-radius: 999px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button:hover {
+button:hover,
+.primary:hover,
+.secondary:hover,
+.accent:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
@@ -211,7 +220,7 @@ button:hover {
   flex-wrap: wrap;
 }
 
-.topic-actions button {
+.topic-actions a {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text);
@@ -259,32 +268,6 @@ button:hover {
   margin-top: 0.6rem;
 }
 
-.cta-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5rem;
-  background: linear-gradient(120deg, #18233b, #121a2a);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-}
-
-footer {
-  padding: 2rem 6vw 3rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
 @media (max-width: 900px) {
   .nav {
     flex-direction: column;
@@ -309,7 +292,4 @@ footer {
     padding: 3rem 1.5rem;
   }
 
-  .cta-section {
-    padding: 2rem 1.5rem;
-  }
 }
