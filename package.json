@@ -1,0 +1,13 @@
+{
+  "name": "devops-atlas",
+  "version": "1.0.0",
+  "description": "DevOps study hub web app",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

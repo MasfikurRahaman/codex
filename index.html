@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DevOps Engineer Study Hub</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
   </head>
   <body>
     <header class="hero">
@@ -16,7 +17,7 @@
           <a href="#interview">Interview Prep</a>
           <a href="#market">Market Value</a>
         </div>
-        <button class="cta">Start Learning</button>
+        <a class="cta" href="#topics">Start Learning</a>
       </nav>
       <div class="hero-content">
         <div>
@@ -28,7 +29,7 @@
           </p>
           <div class="hero-actions">
             <a class="primary" href="#topics">Explore Topics</a>
-            <a class="secondary" href="#path">View Learning Path</a>
+            <button class="secondary action-btn" data-action="roadmap">Get Roadmap</button>
           </div>
           <div class="hero-stats">
             <div>
@@ -53,7 +54,7 @@
             <li>Compute, storage, database choices</li>
             <li>Cost optimization checklist</li>
           </ul>
-          <a class="accent" href="#topics">See Focus Topics</a>
+          <button class="accent action-btn" data-action="focus">See Focus Topics</button>
         </div>
       </div>
     </header>
@@ -76,8 +77,8 @@
             <p><strong>Hands-on:</strong> Build a hardened VM, configure firewall rules</p>
           </div>
           <div class="topic-actions">
-            <a href="#topics">Study Material</a>
-            <a href="#interview">Interview Prep</a>
+            <button class="action-btn" data-topic="Linux & Networking" data-action="materials">Study Material</button>
+            <button class="action-btn" data-topic="Linux & Networking" data-action="interview">Interview Prep</button>
           </div>
         </article>
 
@@ -93,8 +94,8 @@
             <p><strong>Hands-on:</strong> Deploy a 3-tier app, implement backups</p>
           </div>
           <div class="topic-actions">
-            <a href="#topics">Study Material</a>
-            <a href="#interview">Interview Prep</a>
+            <button class="action-btn" data-topic="Cloud Platforms" data-action="materials">Study Material</button>
+            <button class="action-btn" data-topic="Cloud Platforms" data-action="interview">Interview Prep</button>
           </div>
         </article>
 
@@ -110,8 +111,8 @@
             <p><strong>Hands-on:</strong> Deploy a microservice, set HPA + ingress</p>
           </div>
           <div class="topic-actions">
-            <a href="#topics">Study Material</a>
-            <a href="#interview">Interview Prep</a>
+            <button class="action-btn" data-topic="Containers & Kubernetes" data-action="materials">Study Material</button>
+            <button class="action-btn" data-topic="Containers & Kubernetes" data-action="interview">Interview Prep</button>
           </div>
         </article>
 
@@ -127,8 +128,8 @@
             <p><strong>Hands-on:</strong> Build CI/CD to deploy on merge</p>
           </div>
           <div class="topic-actions">
-            <a href="#topics">Study Material</a>
-            <a href="#interview">Interview Prep</a>
+            <button class="action-btn" data-topic="CI/CD & GitOps" data-action="materials">Study Material</button>
+            <button class="action-btn" data-topic="CI/CD & GitOps" data-action="interview">Interview Prep</button>
           </div>
         </article>
 
@@ -144,8 +145,8 @@
             <p><strong>Hands-on:</strong> Create reusable modules, apply CI policies</p>
           </div>
           <div class="topic-actions">
-            <a href="#topics">Study Material</a>
-            <a href="#interview">Interview Prep</a>
+            <button class="action-btn" data-topic="Infrastructure as Code" data-action="materials">Study Material</button>
+            <button class="action-btn" data-topic="Infrastructure as Code" data-action="interview">Interview Prep</button>
           </div>
         </article>
 
@@ -161,10 +162,23 @@
             <p><strong>Hands-on:</strong> Set alerts and run incident game day</p>
           </div>
           <div class="topic-actions">
-            <a href="#topics">Study Material</a>
-            <a href="#interview">Interview Prep</a>
+            <button class="action-btn" data-topic="Observability & SRE" data-action="materials">Study Material</button>
+            <button class="action-btn" data-topic="Observability & SRE" data-action="interview">Interview Prep</button>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="action-center" class="section alt">
+      <div class="section-header">
+        <h2>Action Center</h2>
+        <p>Click any button to load curated content from the backend and preview it here.</p>
+      </div>
+      <div class="action-panel" id="action-panel">
+        <div class="action-panel__content">
+          <h3>Waiting for your selection</h3>
+          <p>Select a topic action or the roadmap button to see content fetched from the API.</p>
+        </div>
       </div>
     </section>
 
